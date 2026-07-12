@@ -3,98 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+<title>Trade with Titans — XAUUSD Market Structure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-.sk-box{
-  max-width:420px;
-  margin:30px auto;
-  background:linear-gradient(180deg,#ffffff,#f7f9ff);
-  padding:0 20px 22px;
-  border-radius:22px;
-  box-shadow:0 20px 45px rgba(0,0,0,.14);
-  font-family:Poppins,sans-serif;
-  text-align:center;
-}
+  :root{
+    --void:#0B0C0F;
+    --panel:#15171C;
+    --panel-2:#1D2027;
+    --line:#2A2E37;
+    --gold:#D4A72C;
+    --gold-bright:#F0C863;
+    --ink:#ECE8DE;
+    --ink-dim:#8B8D93;
+    --bull:#3FA66F;
+    --bear:#C4534A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--void);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(212,167,44,.07), transparent 40%),
+      radial-gradient(circle at 85% 100%, rgba(212,167,44,.05), transparent 45%);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:460px;
+    margin:0 auto;
+    padding:0 0 34px;
+  }
 
-.sk-logo{
-  width:74px;height:74px;
-  margin:22px auto 14px;
-  border-radius:50%;
-  overflow:hidden;
-  box-shadow:0 8px 18px rgba(30,136,229,.35);
-}
-.sk-logo img{width:100%;height:100%;object-fit:cover}
+  /* ---------- HERO / CHART ---------- */
+  .hero{
+    position:relative;
+    padding:26px 22px 22px;
+    border-bottom:1px solid var(--line);
+  }
+  .brandrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+  }
+  .sk-logo{
+    width:46px;height:46px;
+    border-radius:50%;
+    overflow:hidden;
+    border:1px solid var(--line);
+    flex-shrink:0;
+  }
+  .sk-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .brand-name{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--ink);
+  }
+  .brand-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--gold);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
 
-.sk-box h1{
-  font-size:23px;
-  margin:8px 0 6px;
-  font-weight:600;
-}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--bull);
+    box-shadow:0 0 0 3px rgba(63,166,111,.18);
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:29px;
+    line-height:1.16;
+    font-weight:700;
+    margin:0 0 12px;
+    letter-spacing:-.01em;
+  }
+  h1 span{color:var(--gold);}
+  .hero-sub{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink-dim);
+    margin:0 0 22px;
+    max-width:38ch;
+  }
 
-.sk-sub{
-  font-size:14px;
-  color:#555;
-  margin-bottom:18px;
-  line-height:1.5;
-}
+  /* chart */
+  .chart-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 14px 10px;
+  }
+  .chart-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-dim);
+    margin-bottom:8px;
+  }
+  .chart-head b{color:var(--ink); font-weight:500;}
+  .chart-svg{display:block; width:100%; height:auto;}
 
-.sk-list{
-  list-style:none;
-  padding:0;
-  margin:18px 0;
-}
-.sk-list li{
-  font-size:14px;
-  margin-bottom:10px;
-  color:#333;
-}
+  /* ---------- CHECKLIST ---------- */
+  .plan{
+    padding:26px 22px 6px;
+  }
+  .plan-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  .plan-list{
+    list-style:none;
+    margin:0 0 8px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .plan-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 13px;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .chk{
+    flex-shrink:0;
+    width:18px;height:18px;
+    margin-top:1px;
+    border-radius:5px;
+    background:rgba(212,167,44,.14);
+    border:1px solid rgba(212,167,44,.4);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .chk svg{width:10px;height:10px;}
+  .plan-list b{color:var(--gold-bright); font-weight:600;}
 
-/* Button */
-.sk-btn{
-  display:block;
-  margin-top:24px;
-  padding:16px;
-  background:linear-gradient(135deg,#1e88e5,#1565c0);
-  color:#fff;
-  text-decoration:none;
-  border-radius:14px;
-  font-weight:600;
-  letter-spacing:.3px;
-  transition:.3s ease;
-  box-shadow:0 12px 26px rgba(30,136,229,.45);
-}
+  /* ---------- CTA ---------- */
+  .cta-block{
+    padding:28px 22px 4px;
+  }
+  .sk-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    padding:16px 18px;
+    background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+    color:#151208;
+    text-decoration:none;
+    border-radius:12px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.01em;
+    box-shadow:0 14px 30px rgba(212,167,44,.28);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .sk-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 36px rgba(212,167,44,.38);
+  }
+  .sk-btn svg{width:16px;height:16px;flex-shrink:0;}
+  .sk-btn-top{margin-top:16px; box-shadow:0 10px 22px rgba(212,167,44,.22);}
 
-.sk-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 32px rgba(30,136,229,.55);
-}
+  .sk-note{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-dim);
+    text-align:center;
+    margin:14px 0 0;
+    line-height:1.8;
+    letter-spacing:.02em;
+  }
 
-.sk-note{
-  font-size:11px;
-  color:#666;
-  margin-top:14px;
-  line-height:1.6;
-}
-
-.sk-footer{
-  margin-top:18px;
-  font-size:11px;
-  color:#777;
-  line-height:1.7;
-}
-
-.sk-footer a{
-  color:#1e88e5;
-  text-decoration:none;
-  font-weight:500;
-}
-
-.sk-managed{
-  margin-top:6px;
-  font-size:11px;
-  color:#555;
-}
+  /* ---------- FOOTER ---------- */
+  .sk-footer{
+    margin-top:28px;
+    padding:18px 22px 0;
+    border-top:1px solid var(--line);
+    font-size:11px;
+    color:var(--ink-dim);
+    text-align:center;
+    line-height:2;
+  }
+  .sk-footer a{
+    color:var(--ink-dim);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1px;
+  }
+  .sk-footer a:hover{color:var(--gold);}
+  .sk-managed{
+    margin-top:8px;
+    font-size:11px;
+    color:var(--ink-dim);
+  }
+  .sk-managed a{color:var(--gold); font-weight:500; border:none;}
+  .disc{margin-top:10px; opacity:.65;}
 </style>
 
 <!-- Meta Pixel Code -->
@@ -114,59 +251,116 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=4295043207427355&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-
 </head>
-
 <body>
+<div class="wrap">
 
-<div class="sk-box">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="brandrow">
+      <div class="sk-logo"><img src="twt.jpeg" alt="Trade with Titans"></div>
+      <div>
+        <div class="brand-name">Trade with Titans</div>
+        <div class="brand-tag">XAUUSD · Market Structure</div>
+      </div>
+    </div>
 
-  <div class="sk-logo">
-    <img src="twt.jpeg" alt="S K Forex">
+    <div class="eyebrow"><span class="dot"></span> Free classroom · Gold traders only</div>
+    <h1>Read Gold like <span>market structure</span>, not guesswork.</h1>
+    <p class="hero-sub">A rule-based way to see XAUUSD — where liquidity gets swept, where structure breaks, and where <em>not</em> to trade at all.</p>
+
+    <div class="chart-card">
+      <div class="chart-head"><span>XAUUSD · H1</span><b>Liquidity Sweep → BOS</b></div>
+      <svg class="chart-svg" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="42" x2="400" y2="42" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="0" y1="118" x2="400" y2="118" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/>
+        <text x="6" y="37" font-family="JetBrains Mono" font-size="8" fill="#8B8D93">2378.4</text>
+        <text x="6" y="113" font-family="JetBrains Mono" font-size="8" fill="#8B8D93">2361.2</text>
+
+        <!-- candles: approach -->
+        <g stroke="var(--bear)" stroke-width="1.6">
+          <line x1="30" y1="70" x2="30" y2="100"/><rect x="26" y="76" width="8" height="18" fill="var(--bear)"/>
+          <line x1="55" y1="80" x2="55" y2="112"/><rect x="51" y="86" width="8" height="20" fill="var(--bear)"/>
+          <line x1="80" y1="95" x2="80" y2="128"/><rect x="76" y="100" width="8" height="22" fill="var(--bear)"/>
+        </g>
+        <!-- sweep candle: wick pierces support line -->
+        <g stroke="var(--bear)" stroke-width="1.6">
+          <line x1="105" y1="102" x2="105" y2="140"/><rect x="101" y="108" width="8" height="20" fill="var(--bear)"/>
+        </g>
+        <circle cx="105" cy="136" r="3.5" fill="none" stroke="var(--gold-bright)" stroke-width="1.4"/>
+
+        <!-- reversal / BOS up -->
+        <g stroke="var(--bull)" stroke-width="1.6">
+          <line x1="130" y1="88" x2="130" y2="122"/><rect x="126" y="88" width="8" height="20" fill="var(--bull)"/>
+          <line x1="155" y1="66" x2="155" y2="102"/><rect x="151" y="66" width="8" height="24" fill="var(--bull)"/>
+          <line x1="180" y1="44" x2="180" y2="80"/><rect x="176" y="44" width="8" height="26" fill="var(--bull)"/>
+          <line x1="205" y1="28" x2="205" y2="58"/><rect x="201" y="28" width="8" height="22" fill="var(--bull)"/>
+          <line x1="230" y1="20" x2="230" y2="42"/><rect x="226" y="20" width="8" height="16" fill="var(--bull)"/>
+          <line x1="255" y1="10" x2="255" y2="30"/><rect x="251" y="10" width="8" height="14" fill="var(--bull)"/>
+          <line x1="280" y1="8" x2="280" y2="24"/><rect x="276" y="8" width="8" height="12" fill="var(--bull)"/>
+          <line x1="305" y1="6" x2="305" y2="20"/><rect x="301" y="6" width="8" height="10" fill="var(--bull)"/>
+        </g>
+
+        <!-- labels -->
+        <text x="70" y="150" font-family="JetBrains Mono" font-size="8.5" fill="var(--gold-bright)" letter-spacing="1">SWEEP</text>
+        <text x="182" y="40" font-family="JetBrains Mono" font-size="8.5" fill="var(--bull)" letter-spacing="1">BOS</text>
+        <line x1="105" y1="118" x2="330" y2="118" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2 3" opacity=".5"/>
+      </svg>
+    </div>
+
+    <a class="sk-btn sk-btn-top"
+       href="https://t.me/+P1k2y3oh0mM1N2Q1"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="if(typeof fbq==='function'){fbq('track','Subscribe');}">
+       <svg viewBox="0 0 24 24" fill="none"><path d="M21 4L2.5 11.5c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.7c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8L21.9 5c.3-1.3-.5-1.9-1.9-1.4z" fill="#151208"/></svg>
+       Join Free Classroom
+    </a>
   </div>
 
-  <h1>Trade with Titans</h1>
-
-  <div class="sk-sub">
-    Master <strong>XAUUSD (Gold)</strong> using market structure & rule-based trading<br>
-    ✅ Pure education for serious traders
+  <!-- PLAN / FEATURES -->
+  <div class="plan">
+    <div class="plan-label">What you actually learn</div>
+    <ul class="plan-list">
+      <li><span class="chk"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="#D4A72C" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Decode Gold's real structure — <b>sweeps, BOS, CHoCH</b> — without indicator clutter</li>
+      <li><span class="chk"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="#D4A72C" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Know exactly <b>when not to trade</b> — most losses come from forcing entries</li>
+      <li><span class="chk"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="#D4A72C" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        A rule-based system built for <b>Beginner → Intermediate</b> traders</li>
+      <li><span class="chk"><svg viewBox="0 0 12 12"><path d="M2 6l3 3 5-6" stroke="#D4A72C" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        A focused trader community — <b>no hype, no signals-only noise</b></li>
+    </ul>
   </div>
 
-  <ul class="sk-list">
-    <li>✔ Decode Gold (XAUUSD) market structure clearly</li>
-    <li>✔ Learn <strong>when NOT to trade</strong></li>
-    <li>✔ Rule-based system (Beginner → Intermediate)</li>
-    <li>✔ Focused trader community — no hype</li>
-  </ul>
-
-  <a class="sk-btn"
-     href="https://t.me/+P1k2y3oh0mM1N2Q1"
-     target="_blank"
-     rel="noopener noreferrer"
-     onclick="if(typeof fbq==='function'){fbq('track','Subscribe');}">
-     Continue to Private Telegram Classroom
-  </a>
-
-  <div class="sk-note">
-    Trading involves risk. This community focuses on learning only.<br>
-    🔒 No spam • Leave anytime
+  <!-- CTA -->
+  <div class="cta-block">
+    <a class="sk-btn"
+       href="https://t.me/+P1k2y3oh0mM1N2Q1"
+       target="_blank"
+       rel="noopener noreferrer"
+       onclick="if(typeof fbq==='function'){fbq('track','Subscribe');}">
+       <svg viewBox="0 0 24 24" fill="none"><path d="M21 4L2.5 11.5c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.7c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8L21.9 5c.3-1.3-.5-1.9-1.9-1.4z" fill="#151208"/></svg>
+       Enter the Private Classroom
+    </a>
+    <div class="sk-note">🔒 No spam · Leave anytime · Education only</div>
   </div>
 
+  <!-- FOOTER -->
   <div class="sk-footer">
-    <a href="https://elitepips.online/terms/" target="_blank">Terms</a> |
-    <a href="https://elitepips.online/privacy/" target="_blank">Privacy</a> |
-    <a href="https://elitepips.online/disclaimer/" target="_blank">Disclaimer</a>
-
+    <div>Trading involves risk. This community focuses on learning only.</div>
+    <div class="disc">
+      <a href="https://elitepips.online/terms/" target="_blank">Terms</a> ·
+      <a href="https://elitepips.online/privacy/" target="_blank">Privacy</a> ·
+      <a href="https://elitepips.online/disclaimer/" target="_blank">Disclaimer</a>
+    </div>
     <div class="sk-managed">
       Advertised by
-      <a href="https://t.me/+ifc6dyg-xiA2ZGE1" target="_blank">
-        <strong>Digital Ads Expert</strong>
-      </a>
+      <a href="https://t.me/+ifc6dyg-xiA2ZGE1" target="_blank">Digital Ads Expert</a>
     </div>
-    <div>Not affiliated with Meta Platforms, Inc.</div>
+    <div class="disc">Not affiliated with Meta Platforms, Inc.</div>
   </div>
 
 </div>
-
 </body>
 </html>
